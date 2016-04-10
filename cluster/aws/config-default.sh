@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ZONE=${KUBE_AWS_ZONE:-us-west-2a}
+ZONE=${KUBE_AWS_ZONE:-us-west-1a}
 MASTER_SIZE=${MASTER_SIZE:-}
 NODE_SIZE=${NODE_SIZE:-}
 NUM_NODES=${NUM_NODES:-4}
@@ -23,8 +23,10 @@ NUM_NODES=${NUM_NODES:-4}
 if [[ -z ${NODE_SIZE} ]]; then
   if (( ${NUM_NODES} < 50 )); then
     NODE_SIZE="t2.micro"
+    #NODE_SIZE="t2.medium"
   elif (( ${NUM_NODES} < 150 )); then
-    NODE_SIZE="t2.small"
+    #NODE_SIZE="t2.small"
+    NODE_SIZE="t2.medium"
   else
     NODE_SIZE="t2.medium"
   fi
